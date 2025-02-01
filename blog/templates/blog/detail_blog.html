@@ -2,40 +2,35 @@
 
 {% block content %}
 
-<style type="text/css">
-    
-    .card{
-        max-width: 700px;
-    }
-    .container{
-        padding: 20px;
-    }
-</style>
+<div class="container d-flex justify-content-center mt-4">
+    <div class="card shadow-lg p-3" style="max-width: 800px; width: 100%;">
+        <!-- Blog Image -->
+        {% if blog_post.image %}
+            <img src="{{ blog_post.image.url }}" class="card-img-top rounded" alt="Blog Post Image" style="max-height: 400px; object-fit: cover;">
+        {% endif %}
 
-<div class="container">
-    <div class="row">
+        <div class="card-body">
+            <!-- Title -->
+            <h2 class="card-title text-center fw-bold">{{ blog_post.title }}</h2>
 
-        <!-- Blog post-->
-        <div class="card m-auto">
-            <img class="card-img-top" src="{{blog_post.image.url}}">
-            <div class="card-body my-2">
-                <h2 class="card-title">{{blog_post.title}}</h2>
-                <p class="card-text">{{blog_post.body|safe}}</p>
-                {% if blog_post.author == request.user %}
-                    <a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-primary">Update</a>
-                {% endif %}
-            </div>
-            <div class="card-footer text-muted">
-                Updated on {{blog_post.date_updated}} by {{blog_post.author}}
-            </div>
+            <!-- Content -->
+            <p class="card-text mt-3" style="text-align: justify; line-height: 1.6;">
+                {{ blog_post.body|safe }}
+            </p>
+
+            <!-- Edit Button (Only for Author) -->
+            {% if blog_post.author == request.user %}
+                <div class="text-center mt-4">
+                    <a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-warning">Edit Post</a>
+                </div>
+            {% endif %}
         </div>
-        <!-- ENd Blog post-->
 
+        <!-- Footer -->
+        <div class="card-footer text-muted text-center">
+            <small>Updated on {{ blog_post.date_updated|date:"F j, Y" }} by <strong>{{ blog_post.author }}</strong></small>
+        </div>
     </div>
 </div>
 
-
-
 {% endblock content %}
-
-

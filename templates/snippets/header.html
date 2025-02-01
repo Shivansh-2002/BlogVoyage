@@ -1,97 +1,134 @@
-
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
 <style type="text/css">
+    /* Header Styling */
     .blog-header {
-      border-bottom: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        padding: 1.5rem 0;
     }
 
     .blog-header-logo {
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
-    font-size: 2.25rem;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 2.5rem;
+        font-weight: bold;
     }
 
     .blog-header-logo:hover {
-    text-decoration: none;
+        text-decoration: none;
+        color: #007bff; /* Light blue color for hover effect */
     }
 
+    /* H1 to H6 Font */
     h1, h2, h3, h4, h5, h6 {
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
     }
 
+    /* Display size */
     .display-4 {
-    font-size: 2.5rem;
+        font-size: 2.5rem;
     }
+
     @media (min-width: 768px) {
-    .display-4 {
-        font-size: 3rem;
-    }
-    }
-
-    .flex-auto {
-        flex: 0 0 auto;
+        .display-4 {
+            font-size: 3rem;
+        }
     }
 
-    .h-250 { height: 250px; }
-        @media (min-width: 768px) {
-        .h-md-250 { height: 250px; }
+    /* Header Flexbox Adjustments */
+    .header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
     }
 
-    /* Pagination */
-    .blog-pagination {
-    margin-bottom: 4rem;
+    .header-column {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
+    .header-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    /* Button Styling */
+    .btn-custom {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        margin: 0.25rem;
+        border-radius: 25px;
+    }
+
+    .btn-custom:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    /* Mobile View Adjustments */
+    @media (max-width: 768px) {
+        .blog-header-logo {
+            font-size: 1.75rem;
+        }
+
+        .header-right {
+            display: block;
+            text-align: center;
+        }
+
+        .btn-custom {
+            margin-bottom: 0.5rem;
+        }
+    }
+
 </style>
 
 {% if request.user.is_authenticated %}
 <div class="container">
-    <header class="blog-header lh-1 py-3">
-      <div class="row flex-nowrap justify-content-between align-items-center">
-        <div class="col-4 pt-1">
-            <a >Hello, {{request.user.username}}</a>
-        </div>
+    <header class="blog-header">
+        <div class="header-row">
+            <!-- Left Column (User Greeting) -->
+            <div class="header-column">
+                <p class="m-0">Hello, {{ request.user.username }}</p>
+            </div>
 
-        
+            <!-- Center Column (Logo) -->
+            <div class="header-column text-center">
+                <a class="blog-header-logo text-dark" href="{% url 'home' %}">Blog Voyage</a>
+            </div>
 
-        <div class="col-4 text-center">
-          <a class="blog-header-logo text-dark">Blog Voyage</a>
+            <!-- Right Column (Navigation) -->
+            <div class="header-right">
+                <a class="btn btn-sm btn-outline-secondary btn-custom" href="{% url 'home' %}">Home</a>
+                <a class="btn btn-sm btn-outline-secondary btn-custom" href="{% url 'account' %}">Account</a>
+                <a class="btn btn-sm btn-outline-secondary btn-custom" href="{% url 'logout' %}">Logout</a>
+            </div>
         </div>
-        <div class="col-4 d-flex justify-content-end align-items-center">
-            <a class="btn btn-sm btn-outline-secondary" href="{% url 'home' %}">Home</a>
-            &nbsp;  &nbsp;
-          <a class="btn btn-sm btn-outline-secondary" href="{% url 'account' %}" >
-                ACCOUNT 
-          </a>
-          &nbsp; &nbsp; 
-          <a class="btn btn-sm btn-outline-secondary" href="{% url 'logout' %}">Logout</a>
-        </div>
-      </div>
     </header>
 </div>
-
 {% else %}
 <div class="container">
-    <header class="blog-header lh-1 py-3">
-      <div class="row flex-nowrap justify-content-between align-items-center">
-        
-        <div class="col-4 pt-1">
-            <a ></a>
+    <header class="blog-header">
+        <div class="header-row">
+            <!-- Left Column (Empty for unauthenticated users) -->
+            <div class="header-column">
+                <p class="m-0"></p>
+            </div>
+
+            <!-- Center Column (Logo) -->
+            <div class="header-column text-center">
+                <a class="blog-header-logo text-dark" href="{% url 'home' %}">Blog Voyage</a>
+            </div>
+
+            <!-- Right Column (Navigation) -->
+            <div class="header-right">
+                <a class="btn btn-sm btn-outline-secondary btn-custom" href="{% url 'home' %}">Home</a>
+                <a class="btn btn-sm btn-outline-secondary btn-custom" href="{% url 'register' %}">Register</a>
+                <a class="btn btn-sm btn-outline-secondary btn-custom" href="{% url 'login' %}">Login</a>
+            </div>
         </div>
-        <div class="col-4 text-center">
-          <a class="blog-header-logo text-dark">Blog Voyage</a>
-        </div>
-        <div class="col-4 d-flex justify-content-end align-items-center">
-            <a class="btn btn-sm btn-outline-secondary" href="{% url 'home' %}">Home</a>
-            &nbsp;  &nbsp;
-          <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}" >
-                Register Yourself   
-          </a>
-          &nbsp;  &nbsp;  
-          <a class="btn btn-sm btn-outline-secondary" href="{% url 'login' %}">Login</a>
-        </div>
-      </div>
     </header>
 </div>
-
 {% endif %}

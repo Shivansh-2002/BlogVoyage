@@ -1,5 +1,97 @@
-<style type=" text/css">
-    .body{
-        background-color: gray;
-    }
-</style>
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Background */
+body {
+    background-color: #f4f4f9;  /* Softer neutral color */
+    color: #333;  /* Dark text color for good contrast */
+    line-height: 1.6;  /* Make text easier to read */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;  /* Full viewport height */
+}
+
+/* Ensuring a full-height container */
+body, .container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Custom Styles for Body */
+body {
+    background: linear-gradient(to right, #a1c4fd, #c2e9fb); /* Soft gradient background */
+    font-size: 16px;
+}
+
+/* Text Styling */
+h1, h2, h3, h4, h5, h6 {
+    color: #222;  /* Slightly darker color for headings */
+    font-weight: bold;
+}
+
+p {
+    color: #555;  /* Lighter gray text for paragraphs */
+}
+
+/* For any large content */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    margin: auto;
+}
+
+/* Links Styling */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Ensuring links are styled properly on mobile */
+a:focus {
+    outline: none;
+}
+
+/* Optional: Button Styling */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Form Elements */
+input, select, textarea {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
